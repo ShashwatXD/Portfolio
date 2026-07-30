@@ -43,23 +43,35 @@
     if (prefersReduced) return;
     const h = heroEarly ? heroEarly.offsetHeight : window.innerHeight;
     const t = Math.min(1, scrollY / (h * 0.85));
+    const narrow = window.innerWidth <= 820;
+
     if (portraitEl) {
-      portraitEl.style.transform =
-        "translate3d(0," +
-        (t * 36).toFixed(1) +
-        "px,0) scale(" +
-        (1 - t * 0.06).toFixed(3) +
-        ")";
-      portraitEl.style.opacity = String(Math.max(0, 1 - t * 1.15));
+      if (narrow) {
+        // Mobile: portrait is in document flow — no parallax (keeps ring locked)
+        portraitEl.style.transform = "";
+        portraitEl.style.opacity = "";
+      } else {
+        portraitEl.style.transform =
+          "translate3d(0," +
+          (t * 36).toFixed(1) +
+          "px,0) scale(" +
+          (1 - t * 0.06).toFixed(3) +
+          ")";
+        portraitEl.style.opacity = String(Math.max(0, 1 - t * 1.15));
+      }
     }
     if (letterCanvasEl) {
       letterCanvasEl.style.opacity = String(Math.max(0, 1 - t * 0.95));
-      letterCanvasEl.style.transform = "translate3d(0," + (t * 36).toFixed(1) + "px,0)";
+      letterCanvasEl.style.transform = narrow
+        ? ""
+        : "translate3d(0," + (t * 36).toFixed(1) + "px,0)";
     }
     const pixelEl = document.getElementById("pixelPortrait");
     if (pixelEl) {
       pixelEl.style.opacity = String(Math.max(0, 1 - t * 0.95));
-      pixelEl.style.transform = "translate3d(0," + (t * 36).toFixed(1) + "px,0)";
+      pixelEl.style.transform = narrow
+        ? ""
+        : "translate3d(0," + (t * 36).toFixed(1) + "px,0)";
     }
   }
 
