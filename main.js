@@ -44,14 +44,11 @@
     const h = heroEarly ? heroEarly.offsetHeight : window.innerHeight;
     const t = Math.min(1, scrollY / (h * 0.85));
     if (portraitEl) {
-      const narrow = window.innerWidth <= 820;
-      const base = narrow ? "translateX(50%) " : "";
       portraitEl.style.transform =
-        base +
         "translate3d(0," +
-        (t * 48).toFixed(1) +
+        (t * 36).toFixed(1) +
         "px,0) scale(" +
-        (1 - t * 0.08).toFixed(3) +
+        (1 - t * 0.06).toFixed(3) +
         ")";
       portraitEl.style.opacity = String(Math.max(0, 1 - t * 1.15));
     }
@@ -103,9 +100,39 @@
     clearR = Math.max(pr.width, pr.height) * 0.58;
   }
 
+  let textClear = null;
+
+  function updateTextClear() {
+    const content = document.querySelector(".hero-content");
+    if (!content || window.innerWidth > 820) {
+      textClear = null;
+      return;
+    }
+    const hr = hero.getBoundingClientRect();
+    const cr = content.getBoundingClientRect();
+    textClear = {
+      x: cr.left - hr.left,
+      y: cr.top - hr.top - 12,
+      w: cr.width,
+      h: cr.height + 24,
+    };
+  }
+
+  function inTextClear(x, y) {
+    if (!textClear) return false;
+    return (
+      x >= textClear.x &&
+      x <= textClear.x + textClear.w &&
+      y >= textClear.y &&
+      y <= textClear.y + textClear.h
+    );
+  }
+
   function seedLetters() {
     letters.length = 0;
-    const n = Math.max(240, Math.min(1000, Math.floor((lw * lh) / 2600)));
+    updateTextClear();
+    const density = lw < 600 ? 4200 : 2600;
+    const n = Math.max(120, Math.min(1000, Math.floor((lw * lh) / density)));
     const clearSq = clearR * clearR;
     let tries = 0;
     while (letters.length < n && tries < n * 10) {
@@ -115,6 +142,7 @@
       const dx = x - clearX;
       const dy = y - clearY;
       if (dx * dx + dy * dy < clearSq) continue;
+      if (inTextClear(x, y)) continue;
       letters.push({
         ch: GLYPHS[(Math.random() * GLYPHS.length) | 0],
         hx: x,
@@ -224,8 +252,30 @@
     pixelCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
+  function updatePortraitBox() {
+    const portrait = document.getElementById("heroPortrait");
+    if (!portrait) return;
+    const hr = hero.getBoundingClientRect();
+    const pr = portrait.getBoundingClientRect();
+    portraitBox = {
+      x: pr.left - hr.left,
+      y: pr.top - hr.top,
+      s: Math.min(pr.width, pr.height),
+    };
+  }
+
   function buildPixels() {
-    if (!pixelCtx || !sourceImg || !sourceImg.naturalWidth) return;
+    if (!pixelCtx || !sourceImg) return;
+    // Once assembled, never restart the fly-in animation
+    if (assembled) {
+      fitPixelCanvas();
+      updatePortraitBox();
+      updateClearZone();
+      return;
+    }
+    const iw = sourceImg.naturalWidth || sourceImg.width;
+    const ih = sourceImg.naturalHeight || sourceImg.height;
+    if (!iw || !ih) return;
     fitPixelCanvas();
     updateClearZone();
 
@@ -239,22 +289,21 @@
 
     const heroW = hr.width;
     const heroH = hr.height;
-    grid = ps < 180 ? 26 : 34;
+    grid = ps < 160 ? 22 : ps < 220 ? 28 : 34;
 
     const off = document.createElement("canvas");
     off.width = grid;
     off.height = grid;
     const octx = off.getContext("2d");
-    const scale = Math.max(grid / sourceImg.naturalWidth, grid / sourceImg.naturalHeight);
-    const dw = sourceImg.naturalWidth * scale;
-    const dh = sourceImg.naturalHeight * scale;
+    const scale = Math.max(grid / iw, grid / ih);
+    const dw = iw * scale;
+    const dh = ih * scale;
     octx.drawImage(sourceImg, (grid - dw) / 2, (grid - dh) / 2, dw, dh);
     const data = octx.getImageData(0, 0, grid, grid).data;
 
     const cell = ps / grid;
     pixels.length = 0;
     assembleT = 0;
-    assembled = false;
     if (portrait) portrait.classList.remove("is-built");
 
     for (let y = 0; y < grid; y++) {
@@ -312,13 +361,16 @@
 
   function drawSharpCircle() {
     const { x, y, s } = portraitBox;
+    const iw = sourceImg.naturalWidth || sourceImg.width;
+    const ih = sourceImg.naturalHeight || sourceImg.height;
+    if (!iw || !ih) return;
     pixelCtx.save();
     pixelCtx.beginPath();
     pixelCtx.arc(x + s / 2, y + s / 2, s / 2, 0, Math.PI * 2);
     pixelCtx.clip();
-    const scale = Math.max(s / sourceImg.naturalWidth, s / sourceImg.naturalHeight);
-    const dw = sourceImg.naturalWidth * scale;
-    const dh = sourceImg.naturalHeight * scale;
+    const scale = Math.max(s / iw, s / ih);
+    const dw = iw * scale;
+    const dh = ih * scale;
     pixelCtx.drawImage(sourceImg, x + (s - dw) / 2, y + (s - dh) / 2, dw, dh);
     pixelCtx.restore();
   }
@@ -395,18 +447,23 @@
   }
 
   const bootImg = new Image();
-  bootImg.src = "assets/avatar.png?v=" + Date.now();
+  bootImg.decoding = "async";
+  bootImg.src = "assets/avatar.png?v=5";
   bootImg.onload = function () {
-    sourceImg = bootImg;
+    startPortrait(bootImg);
+  };
+
+  function startPortrait(img) {
+    sourceImg = img;
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
         fitLetterCanvas();
         buildPixels();
         last = performance.now();
-        raf = requestAnimationFrame(frame);
+        if (!raf) raf = requestAnimationFrame(frame);
       });
     });
-  };
+  }
 
   window.addEventListener("mousemove", onPointerMove, { passive: true });
   hero.addEventListener("mouseleave", onPointerLeave);
@@ -416,7 +473,14 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       fitLetterCanvas();
-      if (sourceImg) buildPixels();
+      if (!sourceImg) return;
+      if (assembled) {
+        fitPixelCanvas();
+        updatePortraitBox();
+        updateClearZone();
+      } else {
+        buildPixels();
+      }
     }, 140);
   });
 
