@@ -1,160 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Shashwat Pratap Singh</title>
-    <style>
-        body {
-            background-color: #e0f7fa;
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            margin-bottom: 5px;
-        }
-
-        h2 {
-            margin-top: 30px;
-            color: #0077b6;
-        }
-
-        h3 {
-            margin-top: 20px;
-        }
-
-        a {
-            color: #0077b6;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shashwat Pratap Singh — Software Engineer building AI agents, backends, and developer tools." />
+  <title>Shashwat Pratap Singh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-    <div class="container">
-        <header>
-            <h1>Shashwat Pratap Singh</h1>
-            <p>New Delhi, Uttar Pradesh</p>
-            <p>Email: <a href="mailto:shashwatsingh3363@gmail.com">shashwatsingh3363@gmail.com</a> | Phone: <a
-                    href="tel:+919651110063">+91-9651110063</a></p>
-            <p>
-                <a href="https://github.com/shashwatxd" target="_blank">GitHub</a> |
-                <a href="https://www.linkedin.com/in/shashwat-pratap-singh-93314632b/" target="_blank">LinkedIn</a>
-            </p>
-        </header>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-        <section>
-            <h2>Education</h2>
-            <p><strong>Ajay Kumar Garg Engineering College, Ghaziabad, IN</strong> — Bachelor of Technology –
-                Electronics and Communication Engineering (2023 – 2027)</p>
-        </section>
+  <header class="site-nav">
+    <a class="nav-brand" href="#top">.</a>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-        <section>
-            <h2>Leadership & Experience</h2>
+  <main id="top">
+    <section class="hero" aria-label="Introduction">
+      <canvas id="letterField" class="letter-field" aria-hidden="true"></canvas>
+      <canvas id="pixelPortrait" class="pixel-field" aria-hidden="true"></canvas>
+      <div class="hero-vignette" aria-hidden="true"></div>
 
-            <h3>GSoC Contributor - API Dash</h3>
-            <p>May 2026 – Present | Remote</p>
-            <ul>
-                <li>Driving 5 key deliverables to extend API Dash: request-level autosave, Git-backed collections,
-                    visual workflows, an execution engine, and dashboards.</li>
-                <li>Migrating persistence from bulk load-all/manual-save to request-level autosave backed by a
-                    file-system storage model for safer syncing and reduced data-loss risk.</li>
-                <li>Implementing Git support + CLI integration for collections (connect, import/export, push/pull,
-                    commit history, rollback) to version, share, and collaborate on API collections.</li>
-                <li>Building an AI-assisted, node-based workflow builder (DashBot prompt-to-workflow) + execution
-                    engine to run multi-step API flows with chaining, conditions, shared data flow, and run history.
-                </li>
-            </ul>
+      <!-- Anchor for circular portrait target (pixels assemble here) -->
+      <div class="hero-portrait" id="heroPortrait" aria-hidden="true"></div>
 
-            <h3>Flutter Developer Intern - Digia Pvt. Ltd.</h3>
-            <p>Mar 2025 – Present | Remote</p>
-            <ul>
-                <li>Architected and deployed a Server-Driven UI (SDUI) framework in Flutter, dynamically rendering 40+
-                    widget types from remote JSON schemas via a recursive widget factory and registry.</li>
-                <li>Designed and implemented a custom Dart expression interpreter (AST-based parser) enabling runtime
-                    data-binding and configurable business logic across 12+ application modules.</li>
-                <li>Delivered MVP mobile applications for 3+ startups using the Digia platform, including 1 app
-                    surpassing 1,00,000+ downloads.</li>
-                <li>Built a smart dynamic form engine supporting 25+ field types with conditional visibility,
-                    validation rules, and inter-field dependencies.</li>
-            </ul>
-        </section>
+      <div class="hero-content">
+        <p class="eyebrow">New Delhi · Software Engineer</p>
+        <h1 class="brand">Shashwat</h1>
+        <p class="role">Building AI agents, backends, and developer tools.</p>
+        <p class="lede">
+          TypeScript, Python, Node.js, and modern LLM frameworks - from sandboxed coding agents
+          to production systems used by 100K+ people.
+        </p>
+        <div class="hero-links">
+          <a href="mailto:shashwatsingh3363@gmail.com">Email</a>
+          <a href="https://linkedin.com/in/shashwatxd" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/shashwatxd" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
 
-        <section>
-            <h2>Software Projects</h2>
-            <ul>
-                <li>
-                    <strong>Multi-Agent AI Debate Simulator</strong><br>
-                    • Flutter, Node.js, LLM APIs | 2026<br>
-                    • Built a 3-agent AI debate system (debater, challenger, judge) with LLM APIs, generating 3–5
-                    round structured arguments, rebuttals, and evaluations per session.<br>
-                    • Engineered a turn-based orchestration engine managing (~50–100) messages/session with shared
-                    memory + context propagation for coherent multi-round reasoning.<br>
-                    • Implemented JSON-scored verdict pipelines to cut parsing errors and enable deterministic UI
-                    updates for scores and winner selection.
-                </li>
-                <li>
-                    <strong>XDriven</strong><br>
-                    • Flutter, Go, REST API | 2025<br>
-                    • Built a Server-Driven UI app with 15+ dynamic widgets using Flutter and Go.<br>
-                    • Integrated backend-driven navigation handling for 100% runtime UI updates.<br>
-                    • Pioneered a reusable rendering engine for 20+ UI layouts from JSON, decreasing code redundancy
-                    by 15% and accelerating iteration cycles by 20%.
-                </li>
-                <li>
-                    <strong>Logic9</strong><br>
-                    • Flutter, Go, Hive, REST API | 2025<br>
-                    • Integrated Go backend to fetch 50+ server-generated puzzles via REST API.<br>
-                    • Engineered a smart caching system using Hive, reducing API calls by 75% and improving user
-                    experience.<br>
-                    • Achieved a 90% cache hit rate, improving app responsiveness and scalability.
-                </li>
-            </ul>
-        </section>
+      <p class="scroll-cue" aria-hidden="true">Scroll</p>
+    </section>
 
-        <section>
-            <h2>Technical Skills</h2>
-            <p><strong>Languages:</strong> Python, C, C++, Dart, Go/Golang, HTML/CSS</p>
-            <p><strong>Technologies:</strong> Git/GitHub, CLI Tools, Flutter, Firebase, Riverpod, RESTful APIs, AI/LLMs,
-                CI/CD, Agile</p>
-            <p><strong>Tools:</strong> VS Code, Android Studio, Postman, MongoDB Compass</p>
-        </section>
+    <section id="experience" class="section reveal">
+      <div class="section-head">
+        <p class="section-label">Experience</p>
+        <h2>Where the work happens.</h2>
+      </div>
 
-        <section>
-            <h2>Achievements & Leadership</h2>
-            <p><strong>Technical Workshop Facilitator & Competitive Coder</strong></p>
-            <ul>
-                <li>Led Flutter workshops for 20+ peers.</li>
-                <li>Mentored 3 junior students on mobile development, improving their problem-solving and debugging
-                    skills.</li>
-                <li>Consistently ranked among the top 5 in all major coding competitions held at college.</li>
-            </ul>
-        </section>
-    </div>
+      <article class="entry reveal-child">
+        <div class="entry-meta">
+          <h3>Open Source Software Engineer</h3>
+          <p class="org">Google Summer of Code · API Dash</p>
+          <p class="when">May 2026 — Present · Remote</p>
+        </div>
+        <ul>
+          <li>Leading 5 major platform initiatives: Git-native collections, request autosave, AI workflow automation, execution engine, and analytics dashboards.</li>
+          <li>Optimized persistence from load-all/manual-save to incremental request-level autosave, improving reliability and reducing data-loss scenarios.</li>
+          <li>Developing Git support and CLI integration for collections (import/export, push/pull, commit history, rollback) to version and collaborate on REST API collections.</li>
+          <li>Creating an AI-assisted workflow builder (DashBot) and execution engine for multi-step API flows with chaining, conditions, shared data flow, and run history.</li>
+        </ul>
+      </article>
+
+      <article class="entry reveal-child">
+        <div class="entry-meta">
+          <h3>Software Developer Intern</h3>
+          <p class="org">Digia Pvt. Ltd.</p>
+          <p class="when">Mar 2025 — May 2026 · Remote</p>
+        </div>
+        <ul>
+          <li>Architected and deployed a Server-Driven UI (SDUI) framework in Flutter, rendering 40+ widget types from remote JSON schemas via a recursive widget factory.</li>
+          <li>Developed a custom AST-based Dart expression interpreter enabling runtime data binding and configurable business logic across 12+ application modules.</li>
+          <li>Delivered MVP mobile apps for 3+ startups on Digia, including one production app used by 100,000+ end users.</li>
+          <li>Integrated payment APIs supporting 1,000+ payees with the engineering team in an Agile workflow, and built analytics dashboards for transaction metrics.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="projects" class="section reveal">
+      <div class="section-head">
+        <p class="section-label">Projects</p>
+        <h2>Things I ship.</h2>
+      </div>
+
+      <article class="entry reveal-child">
+        <div class="entry-meta">
+          <h3>Parity</h3>
+          <p class="org">TypeScript · Next.js · Node.js · Hono · MCP · Vercel AI SDK · SQLite</p>
+          <p class="when">2026</p>
+        </div>
+        <ul>
+          <li>Coding agent platform with a sandboxed workspace and provider-agnostic LLM layer supporting 4 providers through a unified interface, streaming tool calls via SSE.</li>
+          <li>Hybrid code retrieval using Voyage embeddings, SQLite vector storage, semantic search, and BM25 reranking, plus an MCP dual-transport client (stdio and HTTP).</li>
+          <li>Context compression, memory management, sub-agent delegation, stuck-loop detection, and execution tracing; shipped with GitHub Actions CI/CD and an E2E evaluation harness.</li>
+        </ul>
+      </article>
+
+      <article class="entry reveal-child">
+        <div class="entry-meta">
+          <h3>Cozmo · CLI</h3>
+          <p class="org">Python · Agentic AI · Code Intelligence · Hybrid Retrieval · OpenAI · Ollama</p>
+          <p class="when">2026</p>
+        </div>
+        <ul>
+          <li>Production AI runtime with Clean Architecture, 4 CLI workflows, 10 developer tools, multi-provider LLMs, and regression evaluation benchmarks.</li>
+          <li>Semantic code search using embeddings and hybrid retrieval (BM25, vector search, RRF), with AST analysis, dependency/call graphs, and SHA-256 incremental indexing.</li>
+        </ul>
+      </article>
+
+      <article class="entry reveal-child">
+        <div class="entry-meta">
+          <h3>XDriven</h3>
+          <p class="org">Flutter · Go · REST API · Server-Driven UI</p>
+          <p class="when">2025</p>
+        </div>
+        <ul>
+          <li>Built a Server-Driven UI platform that renders screens from remote JSON — ship layout, copy, and flow changes instantly without Play Store or App Store releases.</li>
+          <li>Enabled backend-driven A/B testing: swap widgets, navigation, and experiments at runtime so product teams can iterate on live apps without waiting on store review.</li>
+          <li>Implemented a reusable rendering engine with 15+ dynamic widgets and 20+ JSON-driven layouts, cutting UI redundancy and speeding up iteration cycles.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="skills" class="section reveal">
+      <div class="section-head">
+        <p class="section-label">Skills</p>
+        <h2>Tools I reach for.</h2>
+      </div>
+
+      <div class="skill-grid">
+        <div class="reveal-child">
+          <h3>Languages</h3>
+          <p>TypeScript, JavaScript, Python, Dart, Go, C/C++, SQL, HTML/CSS</p>
+        </div>
+        <div class="reveal-child">
+          <h3>Frameworks &amp; Tools</h3>
+          <p>Next.js, React, Node.js, Hono, Flutter, Firebase, Riverpod, REST APIs, MongoDB, SQLite, Docker, CI/CD, Git</p>
+        </div>
+        <div class="reveal-child">
+          <h3>AI &amp; Systems</h3>
+          <p>LLMs, RAG, ReAct, MCP, Agentic AI, Vercel AI SDK, SSE, Zod, AST parsers, System Design, Unit &amp; E2E Testing</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section reveal">
+      <div class="section-head">
+        <p class="section-label">Education</p>
+        <h2>Background.</h2>
+      </div>
+
+      <article class="entry entry--compact reveal-child">
+        <div class="entry-meta">
+          <h3>Ajay Kumar Garg Engineering College</h3>
+          <p class="org">Bachelor of Technology in Electronics and Communication Engineering</p>
+          <p class="when">2023 — 2027 · Ghaziabad, IN</p>
+        </div>
+      </article>
+
+      <article class="entry entry--compact reveal-child">
+        <div class="entry-meta">
+          <h3>Achievements</h3>
+        </div>
+        <ul>
+          <li>Shipped production software used by 100K+ end users.</li>
+          <li>Led Flutter workshops for 20+ peers.</li>
+          <li>Mentored 3 juniors on mobile development.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="contact" class="section contact reveal">
+      <div class="section-head">
+        <p class="section-label">Contact</p>
+        <h2>Let’s connect.</h2>
+      </div>
+      <p class="contact-lede reveal-child">Open to interesting problems in AI agents, developer tools, and full-stack systems.</p>
+      <div class="hero-links reveal-child">
+        <a href="mailto:shashwatsingh3363@gmail.com">shashwatsingh3363@gmail.com</a>
+        <a href="https://linkedin.com/in/shashwatxd" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/shashwatxd" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="tel:+919651110063">+91-9651110063</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Shashwat Pratap Singh</p>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
-
 </html>
