@@ -3,48 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shashwat Pratap Singh — Software Engineer building AI agents, backends, and developer tools." />
-  <title>Shashwat Pratap Singh</title>
+  <meta name="description" content="Shashwat Pratap Singh. AI-native builder shipping LLM agents and developer tools. Multi-model routing, guardrails, hybrid RAG, MCP, and observability." />
+  <meta name="author" content="Shashwat Pratap Singh" />
+  <meta name="theme-color" content="#0a0a0b" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shashwat Pratap Singh" />
+  <meta property="og:description" content="AI-native builder shipping LLM agents and developer tools." />
+  <meta property="og:image" content="assets/avatar.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Shashwat Pratap Singh" />
+  <meta name="twitter:description" content="AI-native builder shipping LLM agents and developer tools." />
+  <title>Shashwat Pratap Singh | AI Systems &amp; Developer Tools</title>
+  <link rel="icon" href="assets/avatar.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/avatar.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="site-nav">
-    <a class="nav-brand" href="#top">.</a>
-    <nav>
+  <header class="site-nav" id="siteNav">
+    <a class="nav-brand" href="#top" aria-label="Shashwat home">SP</a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
+
+    <div class="nav-actions">
+      <a
+        class="resume-btn"
+        href="assets/Shashwat_Pratap_Singh_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        download="Shashwat_Pratap_Singh_Resume.pdf"
+      >
+        Resume
+        <span class="resume-btn__icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+        </span>
+      </a>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navLinks"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-label="Introduction">
+  <main id="main">
+    <section class="hero" id="top" aria-label="Introduction">
       <canvas id="letterField" class="letter-field" aria-hidden="true"></canvas>
       <canvas id="pixelPortrait" class="pixel-field" aria-hidden="true"></canvas>
       <div class="hero-vignette" aria-hidden="true"></div>
-
-      <!-- Anchor for circular portrait target (pixels assemble here) -->
       <div class="hero-portrait" id="heroPortrait" aria-hidden="true"></div>
 
       <div class="hero-content">
-        <p class="eyebrow">New Delhi · Software Engineer</p>
+        <p class="eyebrow">New Delhi · AI Systems Engineer</p>
         <h1 class="brand">Shashwat</h1>
-        <p class="role">Building AI agents, backends, and developer tools.</p>
+        <p class="role">Shipping LLM agents and developer tools.</p>
         <p class="lede">
-          TypeScript, Python, Node.js, and modern LLM frameworks - from sandboxed coding agents
-          to production systems used by 100K+ people.
+          Multi-model routing, guardrails, hybrid RAG, MCP, tool calling, eval harnesses,
+          and observability, from sandboxed coding agents to systems used by 100K+ people.
         </p>
         <div class="hero-links">
           <a href="mailto:shashwatsingh3363@gmail.com">Email</a>
           <a href="https://linkedin.com/in/shashwatxd" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://github.com/shashwatxd" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="assets/Shashwat_Pratap_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
         </div>
       </div>
 
@@ -59,15 +101,15 @@
 
       <article class="entry reveal-child">
         <div class="entry-meta">
-          <h3>Open Source Software Engineer</h3>
-          <p class="org">Google Summer of Code · API Dash</p>
-          <p class="when">May 2026 — Present · Remote</p>
+          <h3>Google Summer of Code Contributor</h3>
+          <p class="org">API Dash</p>
+          <p class="when">May 2026 - Present · Remote</p>
         </div>
         <ul>
-          <li>Leading 5 major platform initiatives: Git-native collections, request autosave, AI workflow automation, execution engine, and analytics dashboards.</li>
-          <li>Optimized persistence from load-all/manual-save to incremental request-level autosave, improving reliability and reducing data-loss scenarios.</li>
-          <li>Developing Git support and CLI integration for collections (import/export, push/pull, commit history, rollback) to version and collaborate on REST API collections.</li>
-          <li>Creating an AI-assisted workflow builder (DashBot) and execution engine for multi-step API flows with chaining, conditions, shared data flow, and run history.</li>
+          <li>Shipped AI workflow generation in DashBot: natural-language prompt to a schema-constrained graph of 6 node types, with validation/repair over malformed model output and a human review gate.</li>
+          <li>Delivered Git version control with field-level visual diffs across 7 file kinds and LAN device sync over SHA-256 manifests spanning 3 workspace roots.</li>
+          <li>Led storage migration from Hive to diffable JSON workspaces (atomic writes, 1s debounced autosave, Keychain-backed secure secrets), improving reliability by removing data-loss modes.</li>
+          <li>Built observability dashboards for collections and workflows: success rate, failure patterns, P95 latency, 0-100 health score, and scheduled webhook reports.</li>
         </ul>
       </article>
 
@@ -75,13 +117,12 @@
         <div class="entry-meta">
           <h3>Software Developer Intern</h3>
           <p class="org">Digia Pvt. Ltd.</p>
-          <p class="when">Mar 2025 — May 2026 · Remote</p>
+          <p class="when">Mar 2025 - May 2026 · Remote</p>
         </div>
         <ul>
-          <li>Architected and deployed a Server-Driven UI (SDUI) framework in Flutter, rendering 40+ widget types from remote JSON schemas via a recursive widget factory.</li>
-          <li>Developed a custom AST-based Dart expression interpreter enabling runtime data binding and configurable business logic across 12+ application modules.</li>
-          <li>Delivered MVP mobile apps for 3+ startups on Digia, including one production app used by 100,000+ end users.</li>
-          <li>Integrated payment APIs supporting 1,000+ payees with the engineering team in an Agile workflow, and built analytics dashboards for transaction metrics.</li>
+          <li>Built LLM-driven UI generation mapping natural-language intent and dataset context to Server-Driven UI schemas, layouts, and data bindings.</li>
+          <li>Designed a schema-driven Flutter runtime materializing 40+ widget types from structured remote JSON metadata via a recursive rendering engine.</li>
+          <li>Shipped MVP applications for 3+ startup customers (one serving 100,000+ users) and payment integrations for 1,000+ payees with transaction analytics.</li>
         </ul>
       </article>
     </section>
@@ -94,39 +135,33 @@
 
       <article class="entry reveal-child">
         <div class="entry-meta">
-          <h3>Parity</h3>
-          <p class="org">TypeScript · Next.js · Node.js · Hono · MCP · Vercel AI SDK · SQLite</p>
+          <div class="entry-title-row">
+            <h3>Cozmo CLI</h3>
+            <a class="entry-link" href="https://github.com/shashwatxd/cozmo" target="_blank" rel="noopener noreferrer" aria-label="Cozmo on GitHub">GitHub</a>
+          </div>
+          <p class="org">Python · Multi-Model · Guardrails · Subagents · Hybrid RAG</p>
           <p class="when">2026</p>
         </div>
         <ul>
-          <li>Coding agent platform with a sandboxed workspace and provider-agnostic LLM layer supporting 4 providers through a unified interface, streaming tool calls via SSE.</li>
-          <li>Hybrid code retrieval using Voyage embeddings, SQLite vector storage, semantic search, and BM25 reranking, plus an MCP dual-transport client (stdio and HTTP).</li>
-          <li>Context compression, memory management, sub-agent delegation, stuck-loop detection, and execution tracing; shipped with GitHub Actions CI/CD and an E2E evaluation harness.</li>
+          <li>CLI coding agent: owned tool-calling runtime, 11 gated tools, provider-agnostic LLM port, retries, token/cost tracing; 135 tests.</li>
+          <li>Multi-model routing (orchestrator/worker), scoped subagents, and guardrails (step/tool/cost/time kills, context compaction, write/shell sandbox).</li>
+          <li>Hybrid RAG (BM25+vectors, RRF, rerank 50 to 10), AST graphs, JSON/Chroma, session history, and an eval harness.</li>
         </ul>
       </article>
 
       <article class="entry reveal-child">
         <div class="entry-meta">
-          <h3>Cozmo · CLI</h3>
-          <p class="org">Python · Agentic AI · Code Intelligence · Hybrid Retrieval · OpenAI · Ollama</p>
+          <div class="entry-title-row">
+            <h3>Parity</h3>
+            <a class="entry-link" href="https://github.com/shashwatxd/parity" target="_blank" rel="noopener noreferrer" aria-label="Parity on GitHub">GitHub</a>
+          </div>
+          <p class="org">TypeScript · MCP · RAG · Eval · Hono · SQLite</p>
           <p class="when">2026</p>
         </div>
         <ul>
-          <li>Production AI runtime with Clean Architecture, 4 CLI workflows, 10 developer tools, multi-provider LLMs, and regression evaluation benchmarks.</li>
-          <li>Semantic code search using embeddings and hybrid retrieval (BM25, vector search, RRF), with AST analysis, dependency/call graphs, and SHA-256 incremental indexing.</li>
-        </ul>
-      </article>
-
-      <article class="entry reveal-child">
-        <div class="entry-meta">
-          <h3>XDriven</h3>
-          <p class="org">Flutter · Go · REST API · Server-Driven UI</p>
-          <p class="when">2025</p>
-        </div>
-        <ul>
-          <li>Built a Server-Driven UI platform that renders screens from remote JSON — ship layout, copy, and flow changes instantly without Play Store or App Store releases.</li>
-          <li>Enabled backend-driven A/B testing: swap widgets, navigation, and experiments at runtime so product teams can iterate on live apps without waiting on store review.</li>
-          <li>Implemented a reusable rendering engine with 15+ dynamic widgets and 20+ JSON-driven layouts, cutting UI redundancy and speeding up iteration cycles.</li>
+          <li>Agent platform: sandboxed workspaces, provider-agnostic LLM port, typed tools, SSE streaming, and a plugin SDK.</li>
+          <li>Context layer (windowing, cross-session memory, compression) plus MCP (stdio/HTTP) and RAG (Voyage, SQLite vectors, BM25 rerank).</li>
+          <li>Multi-agent orchestration with approvals, sub-agent delegation, stuck-loop detection, token/cost/latency tracing, and a CI eval harness.</li>
         </ul>
       </article>
     </section>
@@ -139,16 +174,16 @@
 
       <div class="skill-grid">
         <div class="reveal-child">
+          <h3>AI Systems</h3>
+          <p>Agents, Multi-Model Routing, Guardrails, Subagents, MCP, Hybrid RAG, BM25/RRF, Context Compaction, Eval Harnesses, Tool Calling, Observability</p>
+        </div>
+        <div class="reveal-child">
           <h3>Languages</h3>
-          <p>TypeScript, JavaScript, Python, Dart, Go, C/C++, SQL, HTML/CSS</p>
+          <p>TypeScript, JavaScript, Python, Dart, Go, SQL</p>
         </div>
         <div class="reveal-child">
-          <h3>Frameworks &amp; Tools</h3>
-          <p>Next.js, React, Node.js, Hono, Flutter, Firebase, Riverpod, REST APIs, MongoDB, SQLite, Docker, CI/CD, Git</p>
-        </div>
-        <div class="reveal-child">
-          <h3>AI &amp; Systems</h3>
-          <p>LLMs, RAG, ReAct, MCP, Agentic AI, Vercel AI SDK, SSE, Zod, AST parsers, System Design, Unit &amp; E2E Testing</p>
+          <h3>Tools</h3>
+          <p>Next.js, Node.js, Hono, Flutter, Vercel AI SDK, OpenAI/Anthropic/Ollama, SQLite, Chroma, MongoDB, Docker, CI/CD, SSE, Zod</p>
         </div>
       </div>
     </section>
@@ -163,7 +198,7 @@
         <div class="entry-meta">
           <h3>Ajay Kumar Garg Engineering College</h3>
           <p class="org">Bachelor of Technology in Electronics and Communication Engineering</p>
-          <p class="when">2023 — 2027 · Ghaziabad, IN</p>
+          <p class="when">2023 - 2027 · Ghaziabad, IN</p>
         </div>
       </article>
 
@@ -172,9 +207,9 @@
           <h3>Achievements</h3>
         </div>
         <ul>
+          <li>Presented a technical talk on system architecture to the open-source community.</li>
+          <li>Led Flutter workshops for 20+ peers and mentored 3 junior developers.</li>
           <li>Shipped production software used by 100K+ end users.</li>
-          <li>Led Flutter workshops for 20+ peers.</li>
-          <li>Mentored 3 juniors on mobile development.</li>
         </ul>
       </article>
     </section>
@@ -184,18 +219,32 @@
         <p class="section-label">Contact</p>
         <h2>Let’s connect.</h2>
       </div>
-      <p class="contact-lede reveal-child">Open to interesting problems in AI agents, developer tools, and full-stack systems.</p>
+      <p class="contact-lede reveal-child">
+        Open to roles and collaborations in AI agents, developer tools, and production LLM systems.
+      </p>
       <div class="hero-links reveal-child">
         <a href="mailto:shashwatsingh3363@gmail.com">shashwatsingh3363@gmail.com</a>
         <a href="https://linkedin.com/in/shashwatxd" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://github.com/shashwatxd" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="tel:+919651110063">+91-9651110063</a>
       </div>
+      <div class="contact-cta reveal-child">
+        <a
+          class="resume-btn resume-btn--lg"
+          href="assets/Shashwat_Pratap_Singh_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Shashwat_Pratap_Singh_Resume.pdf"
+        >
+          Download Resume
+        </a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>© <span id="year"></span> Shashwat Pratap Singh</p>
+    <a href="assets/Shashwat_Pratap_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
   </footer>
 
   <script src="main.js"></script>

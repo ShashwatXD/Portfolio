@@ -4,6 +4,49 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  // ——— Nav: scroll state + mobile menu + active section ———
+  const siteNav = document.getElementById("siteNav");
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
+  const sectionIds = ["experience", "projects", "skills", "contact"];
+
+  function setNavOpen(open) {
+    if (!navLinks || !navToggle || !siteNav) return;
+    navLinks.classList.toggle("is-open", open);
+    siteNav.classList.toggle("is-open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", function () {
+      setNavOpen(!navLinks.classList.contains("is-open"));
+    });
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setNavOpen(false);
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setNavOpen(false);
+    });
+  }
+
+  function updateActiveSection() {
+    if (!navLinks) return;
+    const offset = (siteNav ? siteNav.offsetHeight : 64) + 24;
+    let current = "";
+    for (let i = 0; i < sectionIds.length; i++) {
+      const el = document.getElementById(sectionIds[i]);
+      if (!el) continue;
+      if (el.getBoundingClientRect().top - offset <= 0) current = sectionIds[i];
+    }
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      const href = link.getAttribute("href") || "";
+      link.classList.toggle("is-active", href === "#" + current);
+    });
+  }
+
   // ——— Scroll reveals + progress + parallax ———
   const reveals = document.querySelectorAll(".reveal");
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -35,6 +78,8 @@
 
   function onScroll() {
     scrollY = window.scrollY || 0;
+    if (siteNav) siteNav.classList.toggle("is-scrolled", scrollY > 24);
+    updateActiveSection();
     if (progressEl) {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const p = max > 0 ? Math.min(1, scrollY / max) : 0;
