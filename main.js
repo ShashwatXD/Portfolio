@@ -503,12 +503,13 @@
     my = -9999;
   }
 
-  const bootImg = new Image();
-  bootImg.decoding = "async";
-  bootImg.src = "assets/avatar.png?v=5";
-  bootImg.onload = function () {
-    startPortrait(bootImg);
-  };
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      fitLetterCanvas();
+      last = performance.now();
+      if (!raf) raf = requestAnimationFrame(frame);
+    });
+  });
 
   function startPortrait(img) {
     sourceImg = img;

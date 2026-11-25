@@ -647,7 +647,7 @@ li::marker {
   }
 
   .hero {
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: stretch;
     min-height: 100svh;
     height: 100svh;
